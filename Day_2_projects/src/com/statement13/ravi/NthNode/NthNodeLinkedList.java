@@ -52,17 +52,17 @@ public class NthNodeLinkedList {
 		head = newNode;
 	}
 
-	@SuppressWarnings({ })
+	
 	public static void main(String[] args) {
-		NthNodeLinkedList ll = new NthNodeLinkedList();
-		ll.add(12);
-		//ll.add(8);
-		//ll.add(42);
-		//ll.add(29);
-		//ll.add(32);
-		//ll.add(87);
-		//ll.add(53);
-		ll.printNthFromEnd(12);
+		NthNodeLinkedList a = new NthNodeLinkedList();
+		a.add(12);
+		a.add(8);
+		a.add(42);
+		//a.add(29);
+		//a.add(32);
+		//a.add(87);
+		a.add(53);
+		a.printNthFromEnd(8);
 	}
 
 }
