@@ -1,68 +1,62 @@
 package com.statement13.ravi.NthNode;
 
+import java.util.Scanner;
+
+class Node {
+	int data;
+	Node next;
+
+	Node(int data, Node next) {
+		this.data = data;
+		this.next = next;
+	}
+}
+
 public class NthNodeLinkedList {
 
-	Nodes head;
+	public static Node getNthFromLast(Node head, int k) {
+		int n = 0;
+		Node curr = head;
 
-	class Nodes {
-		int data;
-		Nodes next;
-
-		Nodes(int d) {
-			data = d;
-			next = null;
+		while (curr != null) {
+			curr = curr.next;
+			n++;
 		}
-	}
 
-	void printNthFromEnd(int n) {
-		Nodes ptr1 = head;
-		Nodes ptr2 = head;
-
-		int count = 0;
-		if (head != null) {
-			while (count < n) {
-				if (ptr2 == null) {
-					System.out.println("-1");
-					System.out.println(n + " the node from the last doesnt exist");
-					return;
-				}
-				ptr2 = ptr2.next;
-				count++;
-			}
-
-			if (ptr2 == null) {
-				head = head.next;
-				if (head != null)
-					System.out.println(n + "the node from the last is " + head.data);
-			} else {
-
-				while (ptr2 != null) {
-					ptr1 = ptr1.next;
-					ptr2 = ptr2.next;
-				}
-				System.out.println(n + "the node from the last is " + ptr1.data);
+		if (n >= k) {
+			curr = head;
+			for (int i = 0; i < n - k; i++) {
+				curr = curr.next;
 			}
 		}
 
+		return curr;
 	}
 
-	public void add(int newData) {
-		Nodes newNode = new Nodes(newData);
-		newNode.next = head;
-		head = newNode;
-	}
-
-	
 	public static void main(String[] args) {
-		NthNodeLinkedList a = new NthNodeLinkedList();
-		a.add(12);
-		a.add(8);
-		a.add(42);
-		//a.add(29);
-		//a.add(32);
-		//a.add(87);
-		a.add(53);
-		a.printNthFromEnd(8);
+		Scanner s = new Scanner(System.in);
+		System.out.println("Enter Number of Nodes in a Linked List:-");
+		int n = s.nextInt();
+		System.out.println("Enter Nth Node: ");
+		int k = s.nextInt();
+		System.out.println("Enter " + n + " Elements:");
+		int keys[] = new int[n];
+		for (int i = 0; i < n; i++) {
+			keys[i] = s.nextInt();
+		}
+		Node head = null;
+		for (int i = keys.length - 1; i >= 0; i--) {
+			head = new Node(keys[i], head);
+		}
+
+		if (k > keys.length) {
+			System.out.println(-1);
+		}
+		Node node = getNthFromLast(head, k);
+
+		if (node != null) {
+			System.out.println("N'th node from the end is: " + node.data);
+		}
 	}
 
 }
